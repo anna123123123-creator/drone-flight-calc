@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>无人机续航计算器 · Drone Flight Calculator</title>
+<meta name="description" content="免费开源、纯浏览器运行的无人机飞行时间与航程计算器，输入电池容量、功耗、巡航速度，估算续航时间和最大航程。不联网。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>无人机<span class="accent">续航</span>计算器</h1>
+    <p class="tagline">输入电池容量、平均功耗、巡航速度，估算飞行时间和最大航程，帮你做任务规划前的预估。纯数学计算，不联网。</p>
+  </header>
+
+  <main class="layout">
+    <section class="controls">
+      <div class="field">
+        <label>机型预设</label>
+        <div class="preset-row">
+          <button class="preset-btn" data-power="200">轻型巡检机 200W</button>
+          <button class="preset-btn" data-power="800">中型植保机 800W</button>
+          <button class="preset-btn" data-power="1500">重型载重机 1500W</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>电池容量（mAh）</label>
+        <input id="capacityInput" type="number" value="10000" min="0" step="100">
+      </div>
+      <div class="field">
+        <label>电池电压（V）</label>
+        <input id="voltageInput" type="number" value="22.2" min="0" step="0.1">
+      </div>
+      <div class="field">
+        <label>平均功耗（W）</label>
+        <input id="powerInput" type="number" value="500" min="1" step="10">
+      </div>
+      <div class="field">
+        <label>安全备用电量（%）</label>
+        <input id="reserveInput" type="number" value="20" min="0" max="90" step="5">
+      </div>
+      <div class="field">
+        <label>巡航速度（km/h）</label>
+        <input id="speedInput" type="number" value="36" min="0" step="1">
+      </div>
+    </section>
+
+    <section class="result-wrap">
+      <div class="result-cards">
+        <div class="result-card">
+          <div class="result-num" id="flightTimeOut">--</div>
+          <div class="result-label">预计飞行时间</div>
+        </div>
+        <div class="result-card accent-card">
+          <div class="result-num" id="rangeOut">--</div>
+          <div class="result-label">预计最大航程</div>
+        </div>
+      </div>
+      <div class="detail-box">
+        <div class="detail-row"><span>电池总能量</span><span id="totalWh" class="val"></span></div>
+        <div class="detail-row"><span>可用能量（扣除安全备用）</span><span id="usableWh" class="val"></span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>MIT 协议开源，纯前端计算，不联网。飞行时间为理论估算值，实际续航会受风速、载重、温度等因素影响，仅供任务规划参考。</p>
+    <p>想要实时定位、航线规划、电量监控、作业日志的完整机队管理系统？<a href="https://inzyxuashop.com/wurenji-yuanma.html" target="_blank" rel="noopener">看看完整版无人机机队管理源码 →</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
